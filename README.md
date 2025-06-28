@@ -1,5 +1,6 @@
 # Skyblock plugin
 Author: Zerosio
+
 Note: This is just a prototype.
 
 ## Available commands:
