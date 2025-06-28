@@ -31,7 +31,7 @@ public class PlayerListener implements Listener {
         
         String init = UserRank.getPlayerRank(player).getPrefix() + player.getName();
         
-        NameTag.setDisplayName(player, init, UserRank.getPlayerRank(player).getPrefix());
+        NameTag.setDisplayName(player, player.getName(), UserRank.getPlayerRank(player).getPrefix());
         
             
         SkyBlockScoreboard.startTask(player);

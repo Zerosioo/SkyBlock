@@ -12,7 +12,11 @@ public class BoardManager {
     private static final Map<Player, Scoreboard> boards = new HashMap<>();
 
     public static void setScoreboard(Player player, String title, String... lines) {
-        Scoreboard board = Bukkit.getScoreboardManager().getNewScoreboard();
+        Scoreboard board = getOrCreateBoard(player);
+
+        Objective old = board.getObjective("sidebar");
+        if (old != null) old.unregister();
+
         Objective objective = board.registerNewObjective("sidebar", "dummy");
         objective.setDisplaySlot(DisplaySlot.SIDEBAR);
         objective.setDisplayName(title);
@@ -26,6 +30,10 @@ public class BoardManager {
 
         player.setScoreboard(board);
         boards.put(player, board);
+    }
+
+    public static Scoreboard getOrCreateBoard(Player player) {
+        return boards.computeIfAbsent(player, p -> Bukkit.getScoreboardManager().getNewScoreboard());
     }
 
     public static void clear(Player player) {

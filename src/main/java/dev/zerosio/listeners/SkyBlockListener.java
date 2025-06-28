@@ -15,11 +15,13 @@ public class SkyBlockListener implements Listener {
     public void onWorldLoad(WorldLoadEvent event) {
         World world = event.getWorld();
         InstanceID.register(world);
+        System.out.println("[SkyBlock] Registered world instance: " + world.getName());
     }
 
     @EventHandler
     public void onWorldInit(WorldInitEvent event) {
         World world = event.getWorld();
         InstanceID.register(world);
+        System.out.println("[SkyBlock] Registered world instance: " + world.getName());
     }
 }

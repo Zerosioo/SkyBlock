@@ -31,6 +31,6 @@ public class UserRank {
 		user.setData("rank", rank.name().toUpperCase());
 		user.save();
 		String displayName = rank.getPrefix() + player.getName();
-		NameTag.setDisplayName(player, displayName, rank.getPrefix());
+		NameTag.setDisplayName(player, player.getName(), rank.getPrefix());
 	}
 }

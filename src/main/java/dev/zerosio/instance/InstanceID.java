@@ -54,6 +54,7 @@ public class InstanceID {
 
         String finalName = type.getPrefix() + num + letter;
         worldNames.put(world, finalName);
+        Bukkit.getLogger().info("Registered world '" + world.getName() + "' as '" + finalName + "'");
     }
 
     public static void register(World world, ServerType forcedType) {

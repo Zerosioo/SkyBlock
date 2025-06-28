@@ -14,37 +14,39 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 public class WarpManager {
-    private static final HashMap<String, WarpData> warpMap = new HashMap<>();
+	private static final HashMap<String, WarpData> warpMap = new HashMap<>();
 
-    public static void registerWarp(String id, WarpType type, Location loc) {
-        warpMap.put(id.toLowerCase(), new WarpData(id, type, loc));
-        WorldLoader.load(loc.getWorld().getName());
-    }
+	public static void registerWarp(String id, WarpType type, Location loc) {
+		warpMap.put(id.toLowerCase(), new WarpData(id, type, loc));
+	}
 
-    public static boolean warpPlayer(Player player, String id) {
-        WarpData warp = warpMap.get(id.toLowerCase());
-        User user = User.getUser(player);
-        if (warp == null) return false;
-        if (player.getLocation().getWorld() == warp.getLocation().getWorld()) {
-        player.sendMessage("§7Warping...");
-        player.playSound(player.getLocation(), Sound.ENDERMAN_TELEPORT, 0f, 1f);
-        } else {
-        player.sendMessage("§7Warping...");
-        player.sendMessage("§7Sending to server " + InstanceID.getName(warp.getLocation().getWorld()) + "...");
-        player.teleport(warp.getLocation());
-        player.playSound(player.getLocation(), Sound.ENDERMAN_TELEPORT, 0f, 1f);
-        player.sendMessage("");
-        player.sendMessage("§aYou are playing on profile: §e" + user.getProfileData("name"));
-        MessageUtil.sendClickableMessage(player, "§8Profile ID: " + user.getActiveProfileId(), ClickActionType.COPY_TO_CLIPBOARD, user.getActiveProfileId().toString(), Arrays.asList("§8Click to copy to clipboard!"));
-        }
-        return true;
-    }
+	public static boolean warpPlayer(Player player, String id) {
+		WarpData warp = warpMap.get(id.toLowerCase());
+		User user = User.getUser(player);
+		if (warp == null) return false;
 
-    public static boolean isWarpExist(String id) {
-        return warpMap.containsKey(id.toLowerCase());
-    }
+		if (player.getLocation().getWorld() == warp.getLocation().getWorld()) {
+			player.sendMessage("§7Warping...");
+			player.teleport(warp.getLocation());
+			player.playSound(player.getLocation(), Sound.ENDERMAN_TELEPORT, 0f, 1f);
+		} else {
+			player.sendMessage("§7Warping...");
+			player.sendMessage("§7Sending to server " + InstanceID.getName(warp.getLocation().getWorld()) + "...");
+			player.teleport(warp.getLocation());
+			player.playSound(player.getLocation(), Sound.ENDERMAN_TELEPORT, 0f, 1f);
+			player.sendMessage("");
+			player.sendMessage("§aYou are playing on profile: §e" + user.getProfileData("name"));
+			MessageUtil.sendClickableMessage(player, "§8Profile ID: " + user.getActiveProfileId(), ClickActionType.COPY_TO_CLIPBOARD, user.getActiveProfileId().toString(),
+											 Arrays.asList("§8Click to copy to clipboard!"));
+		}
+		return true;
+	}
 
-    public static void unregisterWarp(String id) {
-        warpMap.remove(id.toLowerCase());
-    }
+	public static boolean isWarpExist(String id) {
+		return warpMap.containsKey(id.toLowerCase());
+	}
+
+	public static void unregisterWarp(String id) {
+		warpMap.remove(id.toLowerCase());
+	}
 }
