@@ -18,7 +18,7 @@ jobs:
       - name: Set up Java
         uses: actions/setup-java@v4
         with:
-          java-version: 17
+          java-version: 11
           distribution: temurin
 
       - name: Build plugin with Maven
@@ -39,7 +39,7 @@ jobs:
         run: |
           gh release create auto-release artifacts/*.jar \
             --title "Automatic Release" \
-            --notes "This is an automatically generated release." \
+            --notes "Automated release." \
             --latest
         env:
           GH_TOKEN: ${{ secrets.REPO_TOKEN }}
