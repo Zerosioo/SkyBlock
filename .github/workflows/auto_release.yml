@@ -1,0 +1,45 @@
+name: Auto Release
+
+on:
+  push:
+    branches: [main] 
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write 
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          java-version: 17
+          distribution: temurin
+
+      - name: Build plugin with Maven
+        run: mvn clean package
+
+      - name: Collect JARs
+        run: |
+          mkdir -p artifacts
+          find target -type f -name "*.jar" -exec cp {} artifacts/ \;
+
+      - name: Delete previous 'auto-release' (if exists)
+        run: |
+          gh release delete auto-release --yes || echo "No previous release found"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create new 'auto-release'
+        run: |
+          gh release create auto-release artifacts/*.jar \
+            --title "Automatic Release" \
+            --notes "This is an automatically generated release." \
+            --latest
+        env:
+          GH_TOKEN: ${{ secrets.REPO_TOKEN }}
