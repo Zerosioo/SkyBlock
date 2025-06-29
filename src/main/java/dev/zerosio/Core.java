@@ -4,6 +4,7 @@ import org.bukkit.World;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import dev.zerosio.user.User;
+import dev.zerosio.user.statistics.StatRegenerator;
 
 public class Core extends JavaPlugin {
 
@@ -21,6 +22,8 @@ public class Core extends JavaPlugin {
 			dev.zerosio.instance.InstanceID.register(world);
 			System.out.println("[SkyBlock] Registered world instance (pre-loaded): " + world.getName());
 		}
+		
+		StatRegenerator.start(this);
 	}
 
 	public static Core getInstance() {

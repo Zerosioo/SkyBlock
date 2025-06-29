@@ -44,7 +44,7 @@ public class RankCommand extends CommandBase {
             return;
         }
 
-        String rankInput = args[0].toUpperCase();
+        String rankInput = args[0].toUpperCase().replace("+", "PLUS");
         PlayerRank rank;
 
         try {
@@ -69,10 +69,10 @@ public class RankCommand extends CommandBase {
         UserRank.setPlayerRank(rank, target);
 
         if (target.equals(executor)) {
-            executor.sendMessage("§aYour rank has been set to §e" + rank.name());
+            executor.sendMessage("§aYour rank has been set to " + rank.getPrefixColoured());
         } else {
-            executor.sendMessage("§aSet rank of §b" + target.getName() + " §ato §e" + rank.name());
-            target.sendMessage("§aYour rank has been set to §e" + rank.name() + " §aby §b" + executor.getName());
+            executor.sendMessage("§aSet rank of §b" + target.getName() + " §ato §e" + rank.getPrefixColoured());
+            target.sendMessage("§aYour rank has been set to §e" + rank.getPrefixColoured() + " §aby §b" + executor.getName());
         }
     }
 }

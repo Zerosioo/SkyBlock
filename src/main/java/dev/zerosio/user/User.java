@@ -5,6 +5,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 
+import dev.zerosio.instance.InstanceType;
 import dev.zerosio.profile.ProfileTypes;
 import dev.zerosio.rank.PlayerRank;
 import dev.zerosio.utility.Logging;
@@ -45,6 +46,7 @@ public class User {
 			config.set("name", Bukkit.getOfflinePlayer(uuid).getName());
 			config.set("rank", PlayerRank.DEFAULT.name().toUpperCase());
 			config.set("debug_mode", false);
+			config.set("last_instance", InstanceType.HUB.name());
 			save();
 		}
 	}
@@ -171,5 +173,9 @@ public class User {
 
 	public String getString(String key) {
 		return config.getString(key);
+	}
+	
+	public <T> T getData(String key) {
+		return (T) config.get(key);
 	}
 }

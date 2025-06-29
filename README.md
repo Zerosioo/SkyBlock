@@ -13,3 +13,5 @@ Note: This is just a prototype.
 - Profiles System
 - Scoreboard
 - User economy
+- Instaces with auto tp to instance on join.
+- Stats system

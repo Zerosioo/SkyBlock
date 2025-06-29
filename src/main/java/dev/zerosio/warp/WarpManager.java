@@ -24,6 +24,7 @@ public class WarpManager {
 		WarpData warp = warpMap.get(id.toLowerCase());
 		User user = User.getUser(player);
 		if (warp == null) return false;
+		try {
 
 		if (player.getLocation().getWorld() == warp.getLocation().getWorld()) {
 			player.sendMessage("§7Warping...");
@@ -40,6 +41,10 @@ public class WarpManager {
 											 Arrays.asList("§8Click to copy to clipboard!"));
 		}
 		return true;
+		} catch (Exception e) {
+			player.sendMessage("§cCouldn't warp you! Try again later. §7(DYNAMIC_POOL_ERROR)");
+			return true;
+		}
 	}
 
 	public static boolean isWarpExist(String id) {
