@@ -1,4 +1,6 @@
 name: SkyBlock
 version: 1.1
-main: dev.zerosio.Core
+author: [zerosio]
+main: me.zerosio.Core
 api-version: 1.8.8
+depend: [Citizens]

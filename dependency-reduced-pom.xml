@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>dev.zerosio</groupId>
+  <groupId>me.zerosio</groupId>
   <artifactId>SkyBlock</artifactId>
-  <version>io</version>
+  <version>core</version>
   <build>
     <plugins>
       <plugin>
@@ -18,12 +18,7 @@
           </execution>
         </executions>
         <configuration>
-          <relocations>
-            <relocation>
-              <pattern>org.json.simple</pattern>
-              <shadedPattern>com.zerosio.inc.json</shadedPattern>
-            </relocation>
-          </relocations>
+          <relocations />
         </configuration>
       </plugin>
       <plugin>
@@ -35,7 +30,7 @@
           </archive>
           <archive>
             <manifest>
-              <mainClass>dev.zerosio.Core</mainClass>
+              <mainClass>me.zerosio.Core</mainClass>
             </manifest>
           </archive>
         </configuration>
@@ -68,6 +63,13 @@
       <artifactId>spigot</artifactId>
       <version>1.8.8</version>
       <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>net.citizensnpcs</groupId>
+      <artifactId>citizensapi</artifactId>
+      <version>2.0.26-b1995</version>
+      <scope>system</scope>
+      <systemPath>${basedir}/lib/Citizens-2.0.30-b2765.jar</systemPath>
     </dependency>
   </dependencies>
   <properties>

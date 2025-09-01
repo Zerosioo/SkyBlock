@@ -4,9 +4,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>dev.zerosio</groupId>
+    <groupId>me.zerosio</groupId>
     <artifactId>SkyBlock</artifactId>
-    <version>io</version>
+    <version>core</version>
     <packaging>jar</packaging>
 
     <properties>
@@ -37,11 +37,6 @@
       <version>1.8.8-R0.1-SNAPSHOT</version>
       <scope>provided</scope>
     </dependency>
-    <dependency>
-      <groupId>org.mongodb</groupId>
-      <artifactId>mongo-java-driver</artifactId>
-      <version>3.12.10</version>
-    </dependency>
 
     <dependency>
       <groupId>org.spigotmc</groupId>
@@ -49,11 +44,12 @@
       <version>1.8.8</version>
       <scope>provided</scope>
     </dependency>
-        <dependency>
-            <groupId>com.googlecode.json-simple</groupId>
-            <artifactId>json-simple</artifactId>
-            <version>1.1.1</version>
-            <scope>compile</scope>
+    <dependency>
+            <groupId>net.citizensnpcs</groupId>
+            <artifactId>citizensapi</artifactId>
+            <version>2.0.26-b1995</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/lib/Citizens-2.0.30-b2765.jar</systemPath>
         </dependency>
     </dependencies>
 
@@ -73,10 +69,6 @@
                 </executions>
                 <configuration>
                     <relocations>
-                        <relocation>
-                            <pattern>org.json.simple</pattern>
-                            <shadedPattern>com.zerosio.inc.json</shadedPattern>
-                        </relocation>
                     </relocations>
                 </configuration>
             </plugin>
@@ -91,7 +83,7 @@
         			</archive>
         			<archive>
         				<manifest>
-        					<mainClass>dev.zerosio.Core</mainClass>
+        					<mainClass>me.zerosio.Core</mainClass>
         				</manifest>
         			</archive>
         		</configuration>
